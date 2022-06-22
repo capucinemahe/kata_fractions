@@ -1,0 +1,5 @@
+2 fractions
+- addition
+- soustraction
+- multiplication
+- division (division non possible par zero)
