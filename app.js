@@ -3,7 +3,7 @@
 // multiplier
 // diviser
 
-// deux fractions
+// deux fractions : a et b
 
 class Fraction {
   numerateur;
@@ -55,7 +55,10 @@ function division(a, b) {
 }
 
 function addition(a, b) {
-  const resultat = new Fraction();
+
+    //const memeDenominateur = new Fraction(a.denominateur * b.denominateur);
+
+    const resultat = new Fraction();
 
   resultat.numerateur =
     a.numerateur * b.denominateur + b.numerateur * a.denominateur;
@@ -64,7 +67,12 @@ function addition(a, b) {
 
   return resultat;
 }
+
+
 function soustraction(a, b) {
+
+        //const memeDenominateur = new Fraction(a.denominateur * b.denominateur);
+        
   const resultat = new Fraction();
 
   resultat.numerateur =
