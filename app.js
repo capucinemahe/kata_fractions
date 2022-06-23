@@ -2,16 +2,20 @@
 // soustraire
 // multiplier
 // diviser
+// deux fractions : A et B
 
-// deux fractions : a et b
+const e = new Error("le dénominateur d'une fraction ne doit pas être egal à 0");
 
 class Fraction {
   numerateur;
   denominateur;
 
+
   constructor(num, den) {
     this.numerateur = num;
     this.denominateur = den;
+    if(den === 0)
+    throw e;
   }
 
   multiplier(fraction) {
@@ -21,72 +25,40 @@ class Fraction {
     );
   }
 
+  diviser(fraction) {
+    return this.multiplier(
+      new Fraction(fraction.denominateur, fraction.numerateur)
+    );
+    //on inverse denominateur et numerateur pour diviser une fraction
+  }
+
   additionner(fraction) {
+    const memeDenominateur = this.denominateur * fraction.denominateur;
+
     return new Fraction(
       this.numerateur * fraction.denominateur +
         fraction.numerateur * this.denominateur,
-      this.denominateur * fraction.denominateur
+      memeDenominateur
     );
   }
+
   soustraire(fraction) {
+    const memeDenominateur = this.denominateur * fraction.denominateur;
+
     return new Fraction(
       this.numerateur * fraction.denominateur -
         fraction.numerateur * this.denominateur,
-      this.denominateur * fraction.denominateur
+      memeDenominateur
     );
   }
-}
-
-
-function multiplication(a, b) {
-  const resultat = new Fraction();
-
-  resultat.numerateur = a.numerateur * b.numerateur;
-  resultat.denominateur = a.denominateur * b.denominateur;
-
-  return resultat;
-}
-
-function division(a, b) {
-  const inverse = new Fraction(b.denominateur, b.numerateur);
-  const resultat = multiplication(a, inverse);
-
-  return resultat;
-}
-
-function addition(a, b) {
-
-    //const memeDenominateur = new Fraction(a.denominateur * b.denominateur);
-
-    const resultat = new Fraction();
-
-  resultat.numerateur =
-    a.numerateur * b.denominateur + b.numerateur * a.denominateur;
-  resultat.denominateur =
-    a.denominateur * b.denominateur;
-
-  return resultat;
-}
-
-
-function soustraction(a, b) {
-
-        //const memeDenominateur = new Fraction(a.denominateur * b.denominateur);
-        
-  const resultat = new Fraction();
-
-  resultat.numerateur =
-    a.numerateur * b.denominateur - b.numerateur * a.denominateur;
-  resultat.denominateur =
-    a.denominateur * b.denominateur;
-
-  return resultat;
 }
 
 const fractionA = new Fraction(10, 3);
 const fractionB = new Fraction(4, 5);
 
-console.log(multiplication(fractionA, fractionB));
-console.log(division(fractionA, fractionB));
-console.log(addition(fractionA, fractionB));
-console.log(soustraction(fractionA, fractionB));
+//const fractionB = new Fraction(4, 0);
+
+console.log(fractionA.multiplier(fractionB));
+console.log(fractionA.diviser(fractionB));
+console.log(fractionA.additionner(fractionB));
+console.log(fractionA.soustraire(fractionB));
